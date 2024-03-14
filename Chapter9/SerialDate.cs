@@ -10,6 +10,8 @@ namespace Chapter9
     public class SerialDate
     {
 
+
+
         private int day;
         private int month;
         private int year;
@@ -28,12 +30,15 @@ namespace Chapter9
 
         public static SerialDate AddMonths(int monthsToAdd, SerialDate date)
         {
-            // You will need to implement this logic.
-            // You should add the specified number of months to the date.
-            // This may also change the year.
-            // Also, ensure that the day of the month does not exceed the maximum for that month.
-            return new SerialDate(date.GetDayOfMonth(), date.GetMonth() + monthsToAdd, date.GetYYYY());
+            DateTime dateTime = new DateTime(date.GetYYYY(), date.GetMonth(), date.GetDayOfMonth());
 
+            // Add months
+            dateTime = dateTime.AddMonths(monthsToAdd);
+
+            // Convert DateTime back to SerialDate
+            SerialDate newDate = SerialDate.CreateInstance(dateTime.Day, dateTime.Month, dateTime.Year);
+
+            return newDate;
         }
 
         public int GetDayOfMonth()
